@@ -8,7 +8,7 @@ export const products=[
         title:"Brand Levi WHite Tshirt",
         description:"This impressive paella is a perfect party dish and a fun meal to cook together with yourguests. Add 1 cup of frozen peas along with the mussels, if you like. " ,
         availableSizes:["xs","l","xl"],
-        Price:"$50"
+        Price:"50"
     },
     {
         id:"2",
@@ -16,7 +16,7 @@ export const products=[
         title:"Women's New fashion Jacket",
         description:"This impressive paella is a perfect party dish and a fun meal to cook together with yourguests. Add 1 cup of frozen peas along with the mussels, if you like. ",
         availableSizes:["x","l","xl"],
-        Price:"$90"
+        Price:"90"
     },
     {
         id:"3",
@@ -24,7 +24,7 @@ export const products=[
         title:"Man's Jacket",
         description:"This impressive paella is a perfect party dish and a fun meal to cook together with yourguests. Add 1 cup of frozen peas along with the mussels, if you like.",
         availableSizes:["xs","l","xl"],
-        Price:"$80"
+        Price:"80"
     },
     {
         id:"4",
@@ -32,7 +32,7 @@ export const products=[
         title:"White Tshirt",
         description:"This impressive paella is a perfect party dish and a fun meal to cook together with yourguests. Add 1 cup of frozen peas along with the mussels, if you like.",
         availableSizes:["x","l","xl","xxl"],
-        Price:"$70"
+        Price:"70"
     },
 
 

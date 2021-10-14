@@ -1,29 +1,37 @@
 import './App.css';
-import H from './components/Product';
-import Sidebar from './components/Sidebar';
-import { Grid } from '@material-ui/core';
-import Header from './components/Header';
-import Filter from './components/Filter';
+import {BrowserRouter as Router , Switch,Route} from "react-router-dom";
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import {store,persistor} from './combined'
+import {Provider} from 'react-redux'
+import Details from './components/Details';
+import Practice from './components/Practice';
+import { PersistGate } from 'redux-persist/integration/react';
+
+
 function App() {
   return (
-    <div className="App">
-      
-      <Header />
+    <>
+        
+   <Router  >
+     <Provider store={store} >
+       <PersistGate persistor={persistor} >
+      <Switch>
+       <Route path="/" exact component={Home} />
+       <Route path="/cart" exact  component={Cart} />
+       < Route path ="/details/:id" exact component={Details} />
+       <Route path="/practice/:id" exact component={Practice} />
+    
+     </Switch>
+     </PersistGate>
+     </Provider>
+  </Router>
+ 
 
 
-      
-<Grid container >
 
-<Grid item xs={12} sm={12} md={8} >
-<H/>
-  </Grid>
 
-  <Grid item xs={12} sm={12} md={4} >
-<Sidebar/>
-  </Grid>
-  </Grid>
-     
-    </div>
+    </>
   );
 }
 

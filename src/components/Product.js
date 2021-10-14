@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {products} from '../data'
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -9,12 +9,19 @@ import { red } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Filter from './Filter';
 import { Avatar } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import {Link} from "react-router-dom";
+import { useDispatch} from 'react-redux';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 340,
       marginBottom:"1.5rem",
+      marginLeft:"auto",
+      marginRight:"auto",
       
       paddingBottom:"1.5rem"
     },
@@ -37,8 +44,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 const H = () => {
+
     const classes = useStyles();
-    const [items,setItems]=React.useState(products);
+    const dispatch=useDispatch()
+  const state=useSelector(state=>state.productReducer.products)
+    const [items,setItems]=React.useState(state);
+ 
+   
+
     
 
     const filterItem=(item)=>{
@@ -48,26 +61,38 @@ const H = () => {
       setItems(updatedItem)
       }
 
-    const sortItem=item=>{
-      const sorted=[...items].sort((a,b)=>
-      a[item].toLowerCase()>b[item].toLowerCase() ? 1:-1)
-      setItems(sorted);
-    }    
+      const ascendingSort = () => {
+        const sorted = [...products].sort((a, b) => {
+          return a.Price - b.Price;
+        });
+        setItems(sorted);
+      }
+
+      const descendingSort = () => {
+        const sorted = [...products].sort((a, b) => {
+          return b.Price - a.Price;
+        });
+        setItems(sorted);
+      }
+
+  
     
+  console.log(items)
       
  
     return (
         <>
   <div  > 
    
-  <Filter filterItem={filterItem} setItems={setItems} sortItem={sortItem} />
+  <Filter filterItem={filterItem} setItems={setItems} ascendingSort={ascendingSort} descendingSort={descendingSort}  />
 
 
-    <Grid style={{overflow:"hidden"}}  container>
+    <Grid container  
+   style={{width:"90%",margin:"0 auto" ,padding:"4px" }} justifyContent="center" >
 
         {
             items.map((prod)=>(
-                <Grid  item xs={12} sm={12} md={6} >
+                <Grid  item xs={12} sm={6} md={4} >
                        <Card className={classes.root}>
       <CardHeader
         avatar={
@@ -88,9 +113,9 @@ const H = () => {
       <div className={classes.button} >
  
       <Button style={{marginRight:".6rem"}} variant="contained" color="secondary">
-  Buy Now
+     View Details
       </Button>
-    <Button style={{marginRight:".6rem"}} variant="contained" color="secondary">
+    <Button style={{marginRight:".6rem"}}  to={`/details/${prod.id}`} component={Link} variant="contained" color="secondary">
    Add To Cart
    </Button>
 

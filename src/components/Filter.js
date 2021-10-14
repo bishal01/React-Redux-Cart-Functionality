@@ -1,5 +1,4 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {products} from '../data'
@@ -58,8 +57,8 @@ const Filter = (props) => {
          
          
         >
-          <MenuItem style={{color:"red"}}  value="Lowest" onClick={()=>props.setItems("Price")}  >Lowest</MenuItem>
-          <MenuItem style={{color:"red"}}  value="Highest"  >Highest</MenuItem>
+          <MenuItem style={{color:"red"}}  value="Lowest" onClick={() => props.ascendingSort()}  >Lowest</MenuItem>
+          <MenuItem style={{color:"red"}}  value="Highest"  onClick={() => props.descendingSort()} >Highest</MenuItem>
         </Select>
 
         </FormControl>
